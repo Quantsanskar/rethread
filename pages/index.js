@@ -7,16 +7,19 @@ import Layout from "../components/Layout"
 import ProductCard from "../components/ProductCard"
 import { featuredProducts } from "../utils/data"
 import { Search, ChevronRight } from "lucide-react"
+import ProductSlider from "../components/ProductSlider";
+
 
 const Home=()=> {
   const [searchQuery, setSearchQuery] = useState("")
 
   const categories = [
-    { name: "Women", image: "/images/category-women.jpg" },
-    { name: "Men", image: "/images/category-men.jpg" },
-    { name: "Kids", image: "/images/category-kids.jpg" },
-    { name: "Accessories", image: "/images/category-accessories.jpg" },
+    { name: "Women", image: "/images/t1.jpg" },
+    { name: "Men", image: "/images/t2.jpg" },
+    { name: "Kids", image: "/images/t3.jpg" },
+    { name: "Accessories", image: "/images/t4.jpg" },
   ]
+
 
   return (
     <Layout>
@@ -26,40 +29,57 @@ const Home=()=> {
       </Head>
 
       {/* Hero Section */}
-      <div className="relative bg-gray-100 h-[500px] flex items-center">
-        <div className="absolute inset-0 overflow-hidden">
-          <img
-            src="/placeholder.svg?height=500&width=1920"
-            alt="Hero background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Give Your Clothes a Second Life</h1>
-            <p className="text-xl text-white mb-8">
-              Buy and sell pre-loved clothing at affordable prices while reducing textile waste.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/products"
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg text-center"
-              >
-                Shop Now
-              </Link>
-              <Link
-                href="/seller/upload"
-                className="bg-white hover:bg-gray-100 text-emerald-600 font-semibold py-3 px-6 rounded-lg text-center"
-              >
-                Sell Your Clothes
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Hero Section */}
+<div className="relative h-[600px] flex items-center bg-gray-100">
+  {/* Background Image */}
+  <div className="absolute inset-0">
+    <img
+      src="/images/7.png" // Change this to your actual background image
+      alt="Hero Background"
+      className="w-full h-full object-cover"
+    />
+    <div className="absolute inset-0 bg-black/40"></div> {/* Dark overlay */}
+  </div>
 
-      {/* Search Bar */}
+  {/* Content */}
+  <div className="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-10">
+    {/* Left Side: Product Slider */}
+    <div className="w-full md:w-1/2">
+      <h1 className="text-center text-3xl font-bold text-white mb-4 md:hidden">Featured Products</h1>
+      <ProductSlider /> {/* Your Product Slider */}
+    </div>
+
+
+    {/* Right Side: Text & Buttons */}
+    <div className="w-full md:w-1/2 text-center md:text-left">
+      <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
+        Give Your Clothes a Second Life
+      </h1>
+      <p className="text-lg md:text-xl text-gray-200 mb-6">
+        Buy and sell pre-loved clothing at affordable prices while reducing textile waste.
+      </p>
+
+      {/* CTA Buttons */}
+      <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+        <Link
+          href="/products"
+          className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg text-lg transition-all duration-300 shadow-md"
+        >
+          Shop Now
+        </Link>
+        <Link
+          href="/seller/upload"
+          className="bg-white hover:bg-gray-100 text-emerald-600 font-semibold py-3 px-6 rounded-lg text-lg transition-all duration-300 shadow-md"
+        >
+          Sell Your Clothes
+        </Link>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      {/* Search Bar
       <div className="bg-white py-6 shadow-md">
         <div className="container mx-auto px-4">
           <div className="relative max-w-2xl mx-auto">
@@ -73,31 +93,35 @@ const Home=()=> {
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Categories */}
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Shop by Category</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {categories.map((category, index) => (
-              <Link href={`/products?category=${category.name.toLowerCase()}`} key={index} className="group">
-                <div className="relative rounded-lg overflow-hidden h-48 md:h-64">
-                  <img
-                    src={`/placeholder.svg?height=300&width=300&text=${category.name}`}
-                    alt={category.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-xl md:text-2xl font-bold text-white">{category.name}</h3>
-                  </div>
-                </div>
-              </Link>
-            ))}
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl font-bold mb-8 text-center">Shop by Category</h2>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {categories.map((category, index) => (
+        <Link href={`/products?category=${category.name.toLowerCase()}`} key={index} className="group">
+          <div className="relative rounded-lg overflow-hidden h-48 md:h-64 shadow-lg">
+            {/* Category Image */}
+            <img
+              src={category.image} // Add an image field in your categories array
+              alt={category.name}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent group-hover:from-black/30 transition-all duration-300"></div>
+            {/* Category Name */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <h3 className="text-xl md:text-2xl font-bold text-white drop-shadow-md">{category.name}</h3>
+            </div>
           </div>
-        </div>
-      </section>
+        </Link>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Featured Products */}
       <section className="py-12">

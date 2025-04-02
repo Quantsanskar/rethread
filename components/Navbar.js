@@ -45,9 +45,12 @@ export default function Navbar({ user }) {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center">
-                        <span className="text-2xl font-bold text-emerald-600">ReThread</span>
-                    </Link>
+                    <Link href="/" className="flex items-center space-x-2">
+    <span className="text-3xl font-extrabold text-emerald-600 tracking-wide">
+        Re<span className="text-emerald-800">Thread</span>
+    </span>
+</Link>
+
 
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex space-x-8">
